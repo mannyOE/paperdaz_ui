@@ -1,0 +1,29 @@
+.social-btn{
+	width: 100%;
+	border: 1px solid $mainc5!important;
+	text-align: left!important;
+	padding: 0px 15px!important;
+	font-weight: 700!important;
+}
+.fb-btn{
+	background: #4267B2;
+	color: #fff;
+}
+.fb-btn:hover{
+	color: #fff;
+}
+.btn-blockc{
+	width: 100%;
+	background: $mainc;
+	color: $subc1;
+	font-weight: 700!important;
+}
+
+.form-controlc{
+	background: $mainc2!important;
+	color: $mainc3!important;
+	font-weight: 700;
+}
+.colorwhite{
+	color: $subc1;
+}
