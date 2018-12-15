@@ -9,28 +9,28 @@
         <div class="card-body">
            <div class="row">
               <div class="col-10">
-               <div class="form-group">
-                 <input type="text" class="form-control form-controlc" placeholder="Email Address">
-               </div>
-               <div class="form-group">
-                 <input type="text" class="form-control form-controlc" placeholder="Password">
-               </div>
-               <div class="form-group">
-                 <input type="text" class="form-control form-controlc" placeholder="Compaly name">
-               </div>
+                 <div class="form-group">
+                   <input type="text" class="form-control form-controlc" placeholder="Email Address">
+                 </div>
+                 <div class="form-group">
+                   <input type="text" class="form-control form-controlc" placeholder="Password">
+                 </div>
+                 <div class="form-group">
+                   <input type="text" class="form-control form-controlc" placeholder="Compaly name">
+                 </div>
                 <div class="form-group">
                   <select name="" id="" class="form-control form-controlc">
                     <option value="" selected>Select industry..</option>
                     <option value="">Select your industry..</option>
                   </select>
                 </div>
-               <div class="form-group">
-                 <input type="text" class="form-control form-controlc" placeholder="Address">
-               </div>
                 <div class="form-group">
-                  <input type="number" placeholder="Mumber">
+                 <input type="text" class="form-control form-controlc" placeholder="Address">
                 </div>
-               <div class="row">
+                <div class="form-group">
+                  <input type="text" class="form-control form-controlc" placeholder="Phone number">
+                </div>
+                <div class="row">
                  <div class="col-6">
                   <div class="form-group">
                     <input type="text" class="form-control form-controlc" placeholder="First name">
@@ -41,28 +41,19 @@
                     <input type="text" class="form-control form-controlc" placeholder="Last name">
                   </div>
                  </div>
-               </div>
-                <div class="form-group">
-                 <input type="text" class="form-control form-controlc" placeholder="Position">
-                </div>
-                <div class="row">
-                 <div class="col-6">
-                  <div class="form-group">
-                    <input type="text" class="form-control form-controlc" placeholder="Phone number">
-                  </div>
-                 </div>
-                 <div class="col-6">
-                  <div class="form-group">
-                    <input type="text" class="form-control form-controlc" placeholder="Industry">
-                  </div>
-                 </div>
                 </div>
                 <div class="form-group">
-                 <input type="text" class="form-control form-controlc" placeholder="Password">
+                  <input type="text" class="form-control form-controlc" placeholder="Role">
                 </div>
                 <div class="form-group">
-                 <input type="text" class="form-control form-controlc" placeholder="Confirm password">
-                </div>
+                  <input type="text" class="form-control form-controlc" placeholder="Country">
+                </div>  
+                <div class="form-group">
+                  <input type="date" class="form-control form-controlc" placeholder="date and time">
+                </div>  
+                <div class="form-group">
+                  <input type="text" class="form-control form-controlc" placeholder="time z">
+                </div>  
               </div>
               <div class="col-2">
                 <div class="form-group pt-1">
@@ -81,19 +72,28 @@
   	</div>
 
    	<div class="col-md-4">
-         <p>this is profile edit area</p>
+        <div class="form-group pt-1 text-center">
+          <file></file>
+          <p class="mt-3"><a href="" class="btn btn-blockc mt-3" style="display: inline;">Upload</a></p>
+        </div>
     </div>
 	</div>
 </template>
 
 <script>
+
+  import imagess from './img.vue'
+
 	export default {
-	  name: 'login',
+	  name: 'mainprofile',
+    components:{
+      file:imagess,
+    },
     methods:{
       openloginform(){
         this.$emit('changetologin');
       }
-    }
+    },
 	}
 </script>
 

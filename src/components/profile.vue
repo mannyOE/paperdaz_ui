@@ -19,7 +19,7 @@
               </li>
           </ul>
       </div>
-     <div class="col-md-3 bg-color">
+     <div class="col-md-2 bg-color">
       <div class="text-center">
         <div class="text-left">
           <ul>
@@ -41,7 +41,7 @@
      </div>
 
 
-       <div class="col-md-9">
+       <div class="col-md-10">
 
           <router-view></router-view>   
         
