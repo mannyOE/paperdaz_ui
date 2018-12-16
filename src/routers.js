@@ -11,6 +11,9 @@ import profile from './components/profile.vue';
   import mainprofile from './components/profile/mainprofile.vue';
   import team from './components/profile/team.vue';
   import Billings from './components/profile/Billings.vue';
+  import Dashboard from './components/profile/Dashboard.vue';
+  import companyFiles from './components/profile/companyFiles.vue';
+  import SendRequest from './components/profile/SendRequest.vue';
 
 
 
@@ -40,7 +43,19 @@ export const routers=[
         },
         {
           path: 'Billing',
-          component: BusinessUsers
+          component: Billings
+        },
+        {
+          path: 'Dashboard',
+          component: Dashboard
+        },
+        {
+          path: 'companyFiles',
+          component: companyFiles
+        },
+        {
+          path: 'SendRequest',
+          component: SendRequest
         },
       ]
   },

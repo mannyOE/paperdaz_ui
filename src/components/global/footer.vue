@@ -3,7 +3,7 @@
    <!-- Footer -->
 	<footer id="footer" class="page-footer font-small indigo mt-5">
    		
-   		<div class="container">
+   		<div class="container" style="padding: 8px;">
 			<div class="row">
 				<div class="col-md-3 py-2">
 					<ul>
@@ -48,10 +48,10 @@ export default {
 
 	
 	#footer{
+		background: $mainc!important;
 		a{
 			color: #fff!important;
 		}
-		background: $mainc;
 		p{
 			margin: 0px!important;
 		}

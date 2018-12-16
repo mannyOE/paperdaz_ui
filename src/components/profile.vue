@@ -5,7 +5,7 @@
     <b-header v-on:changereg="openregiform" v-on:changelog="openloginform"></b-header>
 
     <div class="container">
-     <div class="row my-5">
+     <div class="row">
       <div class="col-md-12">
          <ul id="headernav">
               <li>
@@ -24,16 +24,16 @@
         <div class="text-left">
           <ul>
             <li>
-              <router-link to="/faq/Geleral">Geleral</router-link>
+              <router-link to="/profile/mainprofile/Dashboard">Dashboard</router-link>
             </li>
             <li>
-              <router-link to="/faq/Geleral/Billing">Billing</router-link>
+              <router-link to="/profile/mainprofile/companyFiles">Company Files</router-link>
             </li>
             <li>
-              <router-link to="/faq/Geleral/BusinessUsers">Business Users</router-link>
+              <router-link to="/profile/mainprofile/SendRequest">Send Request</router-link>
             </li>
             <li>
-              <router-link to="/faq/Geleral/FreeUsers">Free Users</router-link>
+              <router-link to="/profile/mainprofile/TermsOfUse">Terms Of Use</router-link>
             </li>
           </ul>
           </div>

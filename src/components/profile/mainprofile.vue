@@ -8,7 +8,7 @@
         <!-- Card content -->
         <div class="card-body">
            <div class="row">
-              <div class="col-10">
+              <div class="col-6 offset-2">
                  <div class="form-group">
                    <input type="text" class="form-control form-controlc" placeholder="Email Address">
                  </div>

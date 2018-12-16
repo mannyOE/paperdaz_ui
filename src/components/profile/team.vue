@@ -102,7 +102,7 @@
   <div class="col-md-12 text-center" v-else>
     <section id="cuponcodea">
       <div class="text-right py-2">
-        <a class="btn btn-blockc shadow login-btn" style="width: 20%;" @click="clickmember">Add More</a>
+        <a class="btn btn-blockc shadow login-btn" style="width: 20%;" @click="clickmemberback">Add More</a>
       </div>
       <div id="cuponcode" class="shadow">
         <p class="py-3">An email will be sent to the team member to create a profile.</p>
@@ -129,6 +129,9 @@
       },
       clickmember(){
         this.addmember=false;
+      },
+      clickmemberback(){
+        this.addmember=true;
       }
     }
   }
@@ -137,7 +140,12 @@
 <style>
 
   @import './../../cssm/var.css';
-
+  .page-item{
+    margin: 0px 5px;
+    a{
+      color: $mainc!important;
+    }
+  }
   .login-btn{
     background: #fff;
     border: 1px solid $mainc;
