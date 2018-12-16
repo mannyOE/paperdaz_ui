@@ -1,8 +1,28 @@
 <template>
   <b-container fluid>
+      
+    <b-row class="text-center mb-3">
+      <b-col md='2' class="my-1 offset-md-1" style="padding: 0px;">
+        <p class="py-2">Send request to</p>
+      </b-col>
+      <b-col md="9">
+        <div class="row">
+          <b-col md='5' class="my-1" style="padding: 0px;" v-for="i in sendemail">
+            <input type="text" class="form-control form-controlc search-form" placeholder="md.jual.ah@gmail.com">
+          </b-col>
+          <b-col md='5' style="padding: 0px;">
+            <button class="nav-item btn header-btn shadow colorbg">Send</button>
+            <a href="#/profile/mainprofile/SendRequest" class="px-2 color" @click="sendemail++">+ Add another email</a>
+          </b-col>
+        </div>
+      </b-col>
+      <b-col md='12' class="my-1">
+        <p class="my-3">Introduce Paperdaz or select one or multiple files below:</p>
+      </b-col>
+    </b-row>
 
     <!-- User Interface controls -->
-    <b-row class="pb-5">
+    <b-row class="pb-5 d-none">
 
       <b-col md="6" class="my-1">
         <b-form-group horizontal label="Filter" class="mb-0">
@@ -52,15 +72,10 @@
       <template slot="Type" slot-scope="row"><img v-bind:src="row.value" alt="" width="40%"></template>
       <template slot="Status" slot-scope="row">{{row.value}}</template>
       <template slot="actions" slot-scope="row">
-        <b-dropdown variant="link" size="lg" no-caret>
-          <template slot="button-content">
-            <i class="color fas fa-ellipsis-h"></i>
-          </template>
-          <b-dropdown-item href="#">Open</b-dropdown-item>
-          <b-dropdown-item href="#" v-b-modal.modal-center>Send Request</b-dropdown-item>
-          <b-dropdown-item href="#">Download</b-dropdown-item>
-          <b-dropdown-item href="#">Delete</b-dropdown-item>
-        </b-dropdown>
+        <div style="margin-left: 41px;">
+            <input :id="row.value" type="checkbox" name="flavour1" autocomplete="off"  class="custom-control-input" v-model="selected" :value="row.value">
+            <label :for="row.value" class="custom-control-label"><span style="visibility: hidden;">Orange</span></label>
+        </div>
       </template>
     </b-table>
 
@@ -68,7 +83,6 @@
       <img src="/img/seeds_gray.png" alt=""><br>
       <p>Let’s start growing a tree, each completed documents represent a leave!</p>
     </div>
-
     <b-row v-if="items.length>1">
       <b-col md="6" class="my-1">
         <b-form inline horizontal label="Showing" class="m-0 p-0">
@@ -81,66 +95,20 @@
         <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0 justify-content-end text-right" />
       </b-col>
     </b-row>
-
-
-    <div id="sendrequestmoder">
-      <!-- Main UI -->
-      <div class="mt-3 mb-3">
-        Submitted Email:
-        <ul>
-          <li v-for="n in names">{{n}}</li>
-        </ul>
-      </div>
-      <!-- Modal Component -->
-      <b-modal id="modal-center"
-               ref="modal"
-               title="Send request"
-               @ok="handleOk"
-               @shown="clearName"
-               >
-        <form @submit.stop.prevent="handleSubmit">
-          <b-form-group id="exampleInputGroup1"
-                        label="Email address:"
-                        label-for="exampleInput1"
-                        class="font-weight-bold">
-            <b-form-input id="exampleInput1"
-                          type="email"
-                          v-model="name"
-                          required
-                          placeholder="md.jual.ah@gmail.com"
-                          class="form-control form-controlc">
-            </b-form-input>
-          </b-form-group>
-          <b-form-group id="exampleInputGroup1"
-                        label="Add Note:"
-                        label-for="exampleInput1"
-                        class="font-weight-bold">
-            <b-form-textarea id="textarea1"
-                         v-model="text"
-                         placeholder="Enter something"
-                         :rows="3"
-                         :max-rows="6"
-                         class="form-control form-controlc">
-            </b-form-textarea>
-          </b-form-group>
-        </form>
-      </b-modal>
-    </div>
-
   </b-container>
 </template>
 
 <script>
 
 const items = [
-  { Order:1,UploadedBy:{ first:'jual',last:'ahmed' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'sdf' },
-  { Order:2,UploadedBy:{ first:'jual',last:'ahmed' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'sdf' },
-  { Order:3,UploadedBy:{ first:'jual',last:'ahmed' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'sdf' },
-  { Order:4,UploadedBy:{ first:'jual',last:'ahmed' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'sdf' },
-  { Order:5,UploadedBy:{ first:'Jennifer',last:'Garner' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'sdf' },
-  { Order:6,UploadedBy:{ first:'Jennifer',last:'Garner' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'sdf' },
-  { Order:7,UploadedBy:{ first:'Jennifer',last:'Garner' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'sdf' },
-  { Order:8,UploadedBy:{ first:'Jennifer',last:'Garner' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'sdf' }
+  { Order:'1',UploadedBy:{ first:'jual',last:'ahmed' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'1' },
+  { Order:'2',UploadedBy:{ first:'jual',last:'ahmed' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'2' },
+  { Order:'3',UploadedBy:{ first:'jual',last:'ahmed' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'3' },
+  { Order:'4',UploadedBy:{ first:'jual',last:'ahmed' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'4' },
+  { Order:'5',UploadedBy:{ first:'Jennifer',last:'Garner' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'5' },
+  { Order:'6',UploadedBy:{ first:'Jennifer',last:'Garner' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'6' },
+  { Order:'7',UploadedBy:{ first:'Jennifer',last:'Garner' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'7' },
+  { Order:'8',UploadedBy:{ first:'Jennifer',last:'Garner' },Access:'Public',title:"What to Expect 2017",Type:'/img/pdf_icon.png',Email:'No',DateTime:'10:32  11.03.2018',actions:'8' }
 ]
 
 export default {
@@ -155,7 +123,7 @@ export default {
         { key: 'Access', label: 'Access', sortable: true, 'class': 'text-center' },
         { key: 'UploadedBy', label: 'UploadedBy', sortable: true, sortDirection: 'desc' },
         { key: 'Email', label: '+Email', sortable: false, 'class': 'text-center' },
-        { key: 'actions', label: 'Actions' }
+        { key: 'actions', label: 'Select' }
       ],
       currentPage: 1,
       perPage: 5,
@@ -167,7 +135,9 @@ export default {
       filter: null,
       modalInfo: { title: '', content: '' },
       name: '',
-      names: []
+      names: [],
+      selected: [],
+      sendemail:1
     }
   },
   computed: {
@@ -207,8 +177,25 @@ export default {
       this.names.push(this.name)
       this.clearName()
       this.$refs.modal.hide()
+    },
+    toggleAll (checked) {
+      this.selected = checked ? this.flavours.slice() : []
     }
-
+  },
+    watch: {
+    selected (newVal, oldVal) {
+      // Handle changes in individual flavour checkboxes
+      if (newVal.length === 0) {
+        this.indeterminate = false
+        this.allSelected = false
+      } else if (newVal.length === this.flavours.length) {
+        this.indeterminate = false
+        this.allSelected = true
+      } else {
+        this.indeterminate = true
+        this.allSelected = false
+      }
+    }
   }
 }
 </script>
@@ -216,12 +203,24 @@ export default {
  <style>
 
   @import './../../cssm/var.css';
+  .search-form{
+    padding: 10px;
+  }
   #__BVID__26__BV_toggle_{
     margin-top: -10px;
   }
+  .custom-control-input:checked ~ .custom-control-label::before,.page-item.active .page-link{
+    background: $mainc;
+    color: #fff!important;
+  }
   .color{
-    font-size: 20px;
+    font-size: 15px;
     color: $mainc;
+  }
+  .colorbg{
+    background: $mainc;
+    color: #fff;
+    padding: 8px 38px;
   }
   .page-item{
     margin: 0px 5px;

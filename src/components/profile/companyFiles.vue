@@ -167,7 +167,8 @@ export default {
       filter: null,
       modalInfo: { title: '', content: '' },
       name: '',
-      names: []
+      names: [],
+      text:1
     }
   },
   computed: {
