@@ -14,6 +14,7 @@ import profile from './components/profile.vue';
   import Dashboard from './components/profile/Dashboard.vue';
   import companyFiles from './components/profile/companyFiles.vue';
   import SendRequest from './components/profile/SendRequest.vue';
+  import fileupload from './components/profile/fileupload.vue';
 
 
 
@@ -56,6 +57,10 @@ export const routers=[
         {
           path: 'SendRequest',
           component: SendRequest
+        },
+        {
+          path: 'fileupload',
+          component: fileupload
         },
       ]
   },

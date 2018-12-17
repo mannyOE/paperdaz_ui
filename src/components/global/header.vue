@@ -15,7 +15,7 @@
 
     	<b-navbar-nav style="height: 53px;" v-else>
     		<b-nav-item class="btn btn-blockc header-btn shadow" @click="showreg">
-      			<router-link to="#/profile/mainprofile/Dashboard">Upload Files</router-link>
+      			<router-link to="/profile/mainprofile/fileupload">Upload Files</router-link>
       		</b-nav-item>
       		<b-nav-item href="#/">
       			<router-link to="/">
