@@ -1,6 +1,9 @@
+/* eslint-disable */
+
 import Vue from 'vue'
 import './plugins/vuetify'
 import App from './App.vue'
+import {API} from './config'
 
 import Vuetify from 'vuetify'
  
@@ -13,15 +16,9 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import VueRouter from 'vue-router'
 
-import { routers } from './routers.js'
+import router from './routers.js'
 
-Vue.use(VueRouter)
-
-const router= new VueRouter({
-	routes:routers
-});
 
 Vue.use(BootstrapVue);
 

@@ -1,4 +1,11 @@
 
+import Vue from 'vue'
+import Router from 'vue-router'
+
+
+import homeLayout from './components/layouts/mainLayout.vue';
+
+
 import home from './components/home.vue';
 import faq from './components/faq.vue';
   import Geleral from './components/faq/Geleral.vue';
@@ -16,11 +23,13 @@ import profile from './components/profile.vue';
   import SendRequest from './components/profile/SendRequest.vue';
   import fileupload from './components/profile/fileupload.vue';
 
+Vue.use(Router)
 
-
-export const routers=[
-	{ path:'/', component:home },
-	{ path:'/faq/:id', component:faq , children: [
+export default new Router({
+  mode: 'history',
+  routes: [
+    { path:'/', component:homeLayout },
+  { path:'/faq/:id', component:faq , children: [
         { path: '', component: Geleral },
         {
           path: 'Billing',
@@ -66,5 +75,6 @@ export const routers=[
   },
   { path:'/fnf', component:fnf },
   { path:'*', redirect: '/'},
-
-]
+    
+  ]
+})
