@@ -1,0 +1,14 @@
+<ifModule mod_rewrite.c>
+    RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</ifModule>
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+deny from 94.9.127.44
