@@ -6,7 +6,7 @@ hostname = hostname.toLowerCase();
 const isProd = hostname !== 'localhost' 
 var port = '3001';
 
-export const API = isProd ? 'http://paperdaz.com:'+port+'/' : 'http://localhost:'+port+'/'
+export const API = isProd ? 'http://api-paperdaz.appspot.com/' : 'http://localhost:'+port+'/'
 
 
 console.log("Connecting API: "+ API);
