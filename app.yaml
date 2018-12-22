@@ -1,11 +1,14 @@
-runtime: python27
-api_version: 1
-threadsafe: true
+runtime: nodejs
+env: flex
 
-handlers:
-- url: /
-  static_files: dist/index.html
-  upload: dist/index.html
+# runtime: python27
+# api_version: 1
+# threadsafe: true
 
-- url: /
-  static_dir: dist
+# handlers:
+# - url: /
+#   static_files: dist/index.html
+#   upload: dist/index.html
+
+# - url: /
+#   static_dir: dist
