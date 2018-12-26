@@ -27,3 +27,7 @@
 .colorwhite{
 	color: $subc1;
 }
+
+a, a:hover {
+	text-decoration: none;
+}

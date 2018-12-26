@@ -2,31 +2,33 @@
 
   <b-navbar toggleable="md">
     <div class="container">
-      <b-navbar-brand href="/"><img src="img/logo.png" alt="" width="30%"></b-navbar-brand>
+      <b-navbar-brand :to="{name:'home'}"><img src="img/logo.png" alt="" width="30%"></b-navbar-brand>
 
-      	<b-navbar-nav v-if="login">
-      		<b-nav-item href="#" @click="showlog" class="btn btn-blockc header-btn shadow login-btn">
-      			<router-link to="/">Log in</router-link>
-      		</b-nav-item>
-      		<b-nav-item href="#/" class="btn btn-blockc header-btn shadow" @click="showreg">
-      			<router-link to="/">Sign up</router-link>
-      		</b-nav-item>
+      	<b-navbar-nav v-if="!isLoggedIn">
+      		<div class="col-xs-6 mx-2">
+	      		<b-nav-item :to="{name: 'loginPage'}" class="btn btn-blockc header-btn shadow login-btn">
+	      			Log in
+	      		</b-nav-item>
+      		</div>
+      		<div class="col-xs-6 mx-2">
+	      		<b-nav-item :to="{name: 'signupPage'}" class="btn btn-blockc header-btn shadow">
+	      			Sign up
+	      		</b-nav-item>
+	      	</div>
     	</b-navbar-nav>
 
     	<b-navbar-nav style="height: 53px;" v-else>
-    		<b-nav-item class="btn btn-blockc header-btn shadow" @click="showreg">
-      			<router-link to="/profile/mainprofile/fileupload">Upload Files</router-link>
+    		<b-nav-item class="btn btn-blockc header-btn shadow" :to="{name:'upload-files'}">
+      			Upload Files
       		</b-nav-item>
-      		<b-nav-item href="#/">
+      		<b-nav-item >
       			<router-link to="/">
       				<b-dropdown variant="link" no-caret>
 			          <template slot="button-content" class="color">
-			            <p>md.jual.ah@gmail.com</p> <i class="fas fa-angle-down fa-2x"></i>
+			            <p style="text-decoration: none;">{{user.email}} <i class="fa fa-angle-down"></i></p> 
 			          </template>
-			          <b-dropdown-item href="#">Open</b-dropdown-item>
-			          <b-dropdown-item href="#" v-b-modal.modal-center>Send Request</b-dropdown-item>
-			          <b-dropdown-item href="#">Download</b-dropdown-item>
-			          <b-dropdown-item href="#">Delete</b-dropdown-item>
+			          <b-dropdown-item :to="{name:'profile'}">Profile</b-dropdown-item>
+			          <b-dropdown-item @click.prevent="logout()">Logout</b-dropdown-item>
 			        </b-dropdown>
       			</router-link>
       		</b-nav-item>
@@ -38,19 +40,21 @@
 </template>
 
 <script>
+  import { mapGetters, mapActions } from "vuex";
 	export default {
 		data(){
 			return{
-				login:true,
+				
 			}
 		},
 		methods:{
-			showreg(){
-				this.$emit('changereg')
+			logout(){
+				this.logout_user();
 			},
-			showlog(){
-				this.$emit('changelog')
-			}
+			...mapActions('user_mgt', ['logout_user'])
+		},
+		computed: {
+			...mapGetters('user_mgt', ['user','isLoggedIn'])
 		}
 	}
 </script>

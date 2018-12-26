@@ -2,12 +2,12 @@
 	<div class="">
 		<b-header></b-header>
 		<div class="row">
-			<div class="col-lg-7 hidden-xs hidden-md text-center">
-				<!-- <img src="img/left-img.png" alt="" width="90%"> -->
-				<b-cuponcode ></b-cuponcode>
+			<div class="col-lg-7 hidden-xs text-center p-l-1">
+				<img src="img/left-img.png" alt="" width="90%">
+				<!-- <b-cuponcode ></b-cuponcode> -->
 			</div>
-			<div class="col-xs-11 col-md-11 col-lg-4">
-				<b-login></b-login>
+			<div class="col-xs-12 col-md-11 col-lg-4">
+				<router-view></router-view>
 			</div>
 		</div>
 
@@ -22,8 +22,6 @@
 
   import header from './../global/header.vue'
   import footer from './../global/footer.vue'
-  import login from './../global/login.vue'
-  import register from './../global/register.vue'
   import cuponcode from './../global/cuponcode.vue'
 
   export default {
@@ -34,21 +32,11 @@
       }
     },
     methods:{
-      openregiform(){
-        this.login=2;
-      },
-      openloginform(){
-        this.login=1;
-      },
-      showcupon(){
-        this.cuponcode=2;
-      }
+     
     },
     components:{
       bHeader:header,
       bFooter:footer,
-      bLogin:login,
-      // bRegister:register,
       bCuponcode:cuponcode,
     }
   }
@@ -62,6 +50,9 @@
 
    .shadow{
         box-shadow: 0 1px 6px rgba(57,73,76,0.35);
+   }
+   .p-l-1 {
+   	padding-left: 40px;
    }
 
 </style>

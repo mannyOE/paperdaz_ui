@@ -1,7 +1,7 @@
 <template>
 
    <!-- Footer -->
-	<footer id="footer" class="page-footer font-small indigo mt-5">
+	<footer id="footer" class="page-footer font-small indigo mt-5 ">
    		
    		<div class="container" style="padding: 8px;">
 			<div class="row">

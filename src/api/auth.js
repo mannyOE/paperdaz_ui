@@ -4,11 +4,11 @@ import { blackAxios } from '@/config';
 
 export default {
   resource: {
-    res: 'auth/login',
+    res: 'api/users/login',
     confirmPassword: 'auth/confirm_password',
     resend_confirmation: 'auth/resend_confirmation',
     confirm_email: 'auth/confirm_email/',
-    register: 'auth/register'
+    register: 'api/users/signup'
   },
 
 
@@ -18,12 +18,11 @@ export default {
         return response;
       })
       .catch(function (error) {
-        console.log(error.message);
         var err = {};
         err.message = error.message;
         err.status = false;
         err.error = true;
-        return err;
+        throw err;
       });
   },
 

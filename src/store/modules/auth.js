@@ -1,32 +1,21 @@
+/* eslint-disable */
 import api from '@/api/auth';
 
 // Remember to update resetState mutation
 const state = {
   sub: {
     error: false,
-    userError: false,
-    redirectError: false,
-    autherror: false,
-    autherrorMsg: 'Email or password is incorrect',
+    errorMsg: 'Email or password is incorrect',
     loading: false,
-    session: '',
-    isAuth: false,
-    regSuccess: false,
-    user: [],
+    user: {}
   }
 }
 
 // getters
 const getters = {
   error: state => state.sub.error,
-  userError: state => state.sub.userError,
-  autherror: state => state.sub.autherror,
-  autherrorMsg: state => state.sub.autherrorMsg,
-  redirectError: state => state.sub.redirectError,
+  errorMsg: state => state.sub.autherrorMsg,
   loading: state => state.sub.loading,
-  session: state => state.sub.session,
-  isAuth: state => state.sub.isAuth,
-  regSuccess: state => state.sub.regSuccess,
   user: state => state.sub.user,
 }
 
@@ -36,32 +25,19 @@ const actions = {
     commit('loading');
     return api.login(args)
     .then(function (result) {
-      
       commit('notLoading');
-      if(result.error === undefined){
-        var result = result.data;
-      if(result.status === true){
-        
-        dispatch('user_mgt/setUser', result, {root: true})
+      // save user's permission
+        dispatch('user_mgt/setUser', result.data.result, {root: true})
         .then(function (status) {
-          // Logged out
-          // console.log(result.data);
+          // User is set
         });
-      }else{
-        commit('isAuthError');
-        commit('autherrorMsg', result.message);
-      }
-      var returnValue = result;
-      return returnValue;
-      }else{
-        debugger;
-        console.log(result.message);
-        commit('isAuthError');
-        commit('autherrorMsg', result.message);
-        result.status = false;
-        return result;
-      }
-      
+      return result;
+    })
+    .catch((error)=>{
+      commit('notLoading');
+      commit('setErrorMsg', error.message);
+      commit('setError',error.error);
+      throw error;
     })
   },
 
@@ -70,10 +46,13 @@ const actions = {
     return api.signup(args)
     .then(function (result) {
       commit('notLoading');
-      if(result.data.status === true){
-        commit('regSuccess');
-      }
-      return result.data;
+      return result;
+    })
+    .catch((error)=>{
+      commit('notLoading');
+      commit('setErrorMsg', error.message);
+      commit('setError',error.error);
+      throw error;
     })
   },
 
@@ -81,20 +60,23 @@ const actions = {
 
     return api.resend_confirmation(args)
     .then(function (result) {
+      
+    })
+    .catch(error=>{
 
-          return result;
     })
   },
+
+  
+
   confirm_email({ dispatch, commit, state }, args) {
     commit('loading');
     return api.confirm_email(args)
     .then(function (result) {
-      result = result.data;
-      commit('notLoading');
-        if(!result.status){
-          commit('autherrorMsg', result.message);
-        }
-          return result;
+      
+    })
+    .catch(error=>{
+      
     })
   },
 
@@ -122,53 +104,28 @@ const mutations = {
   setError (state, error) {
     state.sub.error = error
   },
+  setErrorMsg (state, error) {
+    state.sub.errorMsg = error
+  },
 
-  setUser (state, user) {
-    user.user_password = '';
-    state.sub.user = user
-  },
-  setSession (state, session) {
-    state.sub.seesions = session
-  },
-  setIsAuth (state, auth) {
-    state.sub.isAuth = auth
-  },
 
   clearErrors (state) {
-    state.sub.autherror = false;
-    state.sub.redirectError = false;
     state.sub.loading = false;
     state.sub.error = false;
+    state.sub.errorMsg = '';
   },
 
   resetState (state) {
     state.sub = {
       error: false,
-      userError: false,
-      redirectError: false,
-      autherror: false,
-      autherrorMsg: 'Email or password is incorrect',
+      errorMsg: false,
       loading: false,
-      session: '',
-      isAuth: false,
-      user: [],
     };
   },
 
   notVerified (state) {
     state.sub.error = true;
     state.sub.autherrorMsg = "Please confirm you account from your email"
-  },
-  autherrorMsg(state, msg){
-    debugger;
-    state.sub.autherrorMsg = msg;
-  },
-  isAuthError (state) {
-    state.sub.autherror = true;
-  },
-
-  notAuthError (state) {
-    state.sub.autherror = false;
   },
 }
 
